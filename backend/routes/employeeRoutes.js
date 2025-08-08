@@ -17,4 +17,18 @@ const newEmp= new Employee(req.body);
 await newEmp.save();
 });
 
+router.put("/:id", async(req,res) =>{
+
+    const updated = await Employee.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updated);
+});
+
+router.delete("/:id", async(req,res) =>{
+    await Employee.findByIdAndDelete(req.params.id);
+  res.json({ message: "Employee deleted" });
+})
+
+
+
+
 module.exports= router;
